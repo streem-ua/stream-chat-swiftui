@@ -37,8 +37,9 @@ public class ChatChannelInfoViewModel: ObservableObject, ChatChannelControllerDe
     @Published public var addUsersShown = false
 
     public var shouldShowLeaveConversationButton: Bool {
-        channel.ownCapabilities.contains(.deleteChannel)
-            || !channel.isDirectMessageChannel
+        return false
+//         channel.ownCapabilities.contains(.deleteChannel)
+//             || !channel.isDirectMessageChannel
     }
 
     public var canRenameChannel: Bool {
