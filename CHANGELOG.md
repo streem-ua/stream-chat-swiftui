@@ -3,7 +3,100 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 # Upcoming
 
+### ✅ Added
+- Config for bottom placement of reactions
+
+### 🐞 Fixed
+- Video playing after being dismissed on iOS 17.1
+
+# [4.40.0](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.40.0)
+_October 26, 2023_
+
+### ⚠️ Important
+
+- Dependencies are no longer exposed (this includes Nuke and SwiftyGif). If you were using those dependencies we were exposing, you would need to import them manually. This is due to our newest addition supporting Module Stable XCFramework, see more below in the "Added" section. If you encounter any SPM-related problems, be sure to reset the package caches.
+
+### ✅ Added
+- Add message preview with attachments in channel list
+- Add support for pre-built XCFramework
+- Config for composer text input paddings
+- Config for left alignment of messages
+
 ### 🔄 Changed
+- Made some `ChannelList` and `MessageListView` parameters optional
+
+# [4.39.0](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.39.0)
+_October 06, 2023_
+
+### 🐞 Fixed
+- Fixed visibility for deleted messages indicator for current user
+
+### ✅ Added
+- Add throttling to mark as read
+
+# [4.38.0](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.38.0)
+_September 29, 2023_
+
+### 🐞 Fixed
+- Performance improvements in the low-level client
+
+# [4.37.1](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.37.1)
+_September 27, 2023_
+
+### ✅ Added
+- Config for changing supported media types in the composer
+
+### 🐞 Fixed
+- Play audio in videos when in silent mode
+
+# [4.37.0](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.37.0)
+_September 18, 2023_
+
+### 🔄 Changed
+- Updated `StreamChat` dependency
+
+# [4.36.0](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.36.0)
+_August 31, 2023_
+
+### ✅ Added
+- Add XCPrivacy manifest [#352](https://github.com/GetStream/stream-chat-swift/pull/352)
+
+### 🔄 Changed
+- Reactions popup disabled if channel is frozen
+
+### 🐞 Fixed
+- Online indicator updates in the header view
+- Reactions overlay interface orientation updates
+
+# [4.35.1](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.35.1)
+_August 10, 2023_
+
+### 🔄 Changed
+
+- Updated `StreamChat` dependency
+
+# [4.35.0](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.35.0)
+_August 09, 2023_
+
+### 🔄 Changed
+- Video and giphy attachments now use `makeMessageViewModifier`
+- Updated scalling of avatar images
+- Turn off channel updates when message thread shown
+
+### 🐞 Fixed
+- `AttachmentTextView` respects configured body font
+- Attachments persisted after message editing
+
+### ✅ Added
+- Option to specify bottom offset in `ReactionsOverlayView`
+
+# [4.34.0](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.34.0)
+_July 06, 2023_
+
+### ✅ Added
+- Added factory method for customizing the message list container's modifier
+- Option to customize the date separation logic in the message list
+- Public init for `LinkAttachmentContainer`
 
 # [4.33.0](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.33.0)
 _June 09, 2023_
@@ -243,7 +336,7 @@ _May 17, 2022_
 - Bug with reactions offset for large number of reactions
 - Text input cursor jump
 - Text message rendering issue with custom font
-- Tap enabled on fourth image in attachments if there's a number overlay 
+- Tap enabled on fourth image in attachments if there's a number overlay
 
 # [4.14.0](https://github.com/GetStream/stream-chat-swiftui/releases/tag/4.14.0)
 _April 26, 2022_
@@ -318,7 +411,7 @@ _February 16, 2022_
 ### ✅ Added
 - Slow mode
 - Copying of a message
-- Push notifications 
+- Push notifications
 - Message list config options
 
 ### 🐞 Fixed

@@ -396,11 +396,22 @@ open class MessageComposerViewModel: ObservableObject {
     }
     
     public func askForPhotosPermission() {
-        PHPhotoLibrary.requestAuthorization { (status) in
+        PHPhotoLibrary.requestAuthorization { [weak self] (status) in
+            guard let self else { return }
             switch status {
             case .authorized, .limited:
                 log.debug("Access to photos granted.")
                 let fetchOptions = PHFetchOptions()
+                let supportedTypes = self.utils.composerConfig.gallerySupportedTypes
+                var predicate: NSPredicate?
+                if supportedTypes == .images {
+                    predicate = NSPredicate(format: "mediaType = \(PHAssetMediaType.image.rawValue)")
+                } else if supportedTypes == .videos {
+                    predicate = NSPredicate(format: "mediaType = \(PHAssetMediaType.video.rawValue)")
+                }
+                if let predicate {
+                    fetchOptions.predicate = predicate
+                }
                 fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
                 let assets = PHAsset.fetchAssets(with: fetchOptions)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [weak self] in
@@ -469,7 +480,10 @@ open class MessageComposerViewModel: ObservableObject {
             messageId: message.id
         )
         
-        messageController.editMessage(text: adjustedText) { [weak self] error in
+        messageController.editMessage(
+            text: adjustedText,
+            attachments: utils.composerConfig.attachmentPayloadConverter(message)
+        ) { [weak self] error in
             if error != nil {
                 self?.errorShown = true
             } else {

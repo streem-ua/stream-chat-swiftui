@@ -207,6 +207,10 @@ extension ViewFactory {
         EmptyViewModifier()
     }
     
+    public func makeMessageListContainerModifier() -> some ViewModifier {
+        EmptyViewModifier()
+    }
+    
     public func makeMessageViewModifier(for messageModifierInfo: MessageModifierInfo) -> some ViewModifier {
         MessageBubbleModifier(
             message: messageModifierInfo.message,
@@ -738,6 +742,20 @@ extension ViewFactory {
         ReactionsUsersView(
             message: message,
             maxHeight: maxHeight
+        )
+    }
+    
+    public func makeBottomReactionsView(
+        message: ChatMessage,
+        showsAllInfo: Bool,
+        onTap: @escaping () -> Void,
+        onLongPress: @escaping () -> Void
+    ) -> some View {
+        BottomReactionsView(
+            message: message,
+            showsAllInfo: showsAllInfo,
+            onTap: onTap,
+            onLongPress: onLongPress
         )
     }
     

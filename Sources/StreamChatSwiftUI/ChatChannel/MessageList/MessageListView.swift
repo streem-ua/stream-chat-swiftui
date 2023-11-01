@@ -67,8 +67,8 @@ public struct MessageListView<Factory: ViewFactory>: View, KeyboardReadable {
         quotedMessage: Binding<ChatMessage?>,
         currentDateString: String? = nil,
         listId: String,
-        isMessageThread: Bool,
-        shouldShowTypingIndicator: Bool,
+        isMessageThread: Bool = false,
+        shouldShowTypingIndicator: Bool = false,
         onMessageAppear: @escaping (Int) -> Void,
         onScrollToBottom: @escaping () -> Void,
         onLongPress: @escaping (MessageDisplayInfo) -> Void
@@ -266,6 +266,7 @@ public struct MessageListView<Factory: ViewFactory>: View, KeyboardReadable {
                 pendingKeyboardUpdate = nil
             }
         })
+        .modifier(factory.makeMessageListContainerModifier())
         .modifier(HideKeyboardOnTapGesture(shouldAdd: keyboardShown))
         .onDisappear {
             messageRenderingUtil.update(previousTopMessage: nil)

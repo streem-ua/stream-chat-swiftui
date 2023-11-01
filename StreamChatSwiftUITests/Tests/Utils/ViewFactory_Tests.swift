@@ -792,6 +792,33 @@ class ViewFactory_Tests: StreamChatTestCase {
         // Then
         XCTAssert(view is ComposerTextInputView)
     }
+    
+    func test_viewFactory_makeMessageListContainerModifier() {
+        // Given
+        let viewFactory = DefaultViewFactory.shared
+        
+        // When
+        let modifier = viewFactory.makeMessageListContainerModifier()
+        
+        // Then
+        XCTAssert(modifier is EmptyViewModifier)
+    }
+    
+    func test_viewFactory_makeBottomReactionsView() {
+        // Given
+        let viewFactory = DefaultViewFactory.shared
+        
+        // When
+        let view = viewFactory.makeBottomReactionsView(
+            message: .mock(),
+            showsAllInfo: true,
+            onTap: {},
+            onLongPress: {}
+        )
+        
+        // Then
+        XCTAssert(view is BottomReactionsView)
+    }
 }
 
 extension ChannelAction: Equatable {
